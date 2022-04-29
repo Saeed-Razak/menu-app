@@ -1,13 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import {AuthContext} from "../contexts/auth.context"
 
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
 
 function Login() {
   const navigate = useNavigate();
-
   const { success, loading, user, authLogin } = useContext(AuthContext);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,19 +22,18 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit} className="form">
-      <div className="col-sm-12 col-md-6 col-lg-4 col-xl-4 m-3 p-3 bg-info">
+      <div className='col-sm-12 col-md-6 col-lg-4 col-x1-4 m-3 p-3 bg-info'>
         <div className="form-group m-2">
           <label htmlFor="email">email</label>
           <input
             type="email"
             className="form-control"
             placeholder="Enter email"
-            value={password}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
-        <div className="form-group m-2">
+        <div className="form-group">
           <label htmlFor="password">password</label>
           <input
             type="password"
@@ -46,19 +43,16 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
         <button type="submit" className="btn btn-primary m-2">
-          {loading ? " Loading..." : "Login"}
-        </button>
-        <div>
-          I don't have an account
-          <Link to="/register" className="nav-link">
-            Register
-          </Link>
-        </div>
+          {loading ? "Loading..." : "Login"}
+              </button>
+              <div>
+                  I do not have an account
+                  <Link to="/register" className='nav-link'>Register</Link>
+              </div>
       </div>
     </form>
   );
 }
 
-export default Login;
+export default Login
